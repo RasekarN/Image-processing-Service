@@ -1,0 +1,5 @@
+Description of Worker Functions
+Image Processor Worker: This worker is responsible for processing images. It compresses images by 50% of their original quality and stores the processed image data and associated product information in the database.
+Function: processImages(inputUrls, requestId)
+Inputs: Array of input image URLs and the unique request ID.
+Outputs: Compressed images saved to storage, status updated in the database

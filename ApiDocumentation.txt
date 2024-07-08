@@ -1,0 +1,37 @@
+Upload API
+URL: /upload
+Method: POST
+Description: Accepts CSV files and returns a unique request ID.
+Request:
+Headers: Content-Type: multipart/form-data
+Body: Form-Data with a file field set to a CSV file.
+Response:
+200 OK: { requestId: "unique-request-id" }
+400 Bad Request: { error: "Error message" }
+500 Internal Server Error: { error: "Internal server error" }
+Status API
+URL: /status/:requestId
+Method: GET
+Description: Checks the processing status using the request ID.
+Request:
+Headers: Content-Type: application/json
+Params: requestId - The unique request ID received from the upload API.
+Response:
+200 OK: { status: "processing" | "processed" | "error" }
+404 Not Found: { error: "Request ID not found" }
+500 Internal Server Error: { error: "Internal server error" }
+Webhook API
+URL: /webhook/callback
+Method: POST
+Description: Processes callbacks from the image processing service.
+Request:
+Headers: Content-Type: application/json
+Body:
+{
+  "requestId": "unique-request-id",
+  "status": "processed",
+  "processedImageUrls": ["url1", "url2"]
+}
+Response:
+200 OK: Callback processed
+500 Internal Server Error: Internal server error
