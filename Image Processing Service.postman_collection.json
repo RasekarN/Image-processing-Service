@@ -1,0 +1,101 @@
+{
+	"info": {
+		"_postman_id": "4a892b73-4a37-45c6-88fd-e4128641a431",
+		"name": "Image Processing Service",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25961066"
+	},
+	"item": [
+		{
+			"name": "Upload CSV",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "multipart/form-data"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": "path/to/your/test.csv"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/upload",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"upload"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Check Status",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/status/:requestId",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"status",
+						":requestId"
+					],
+					"variable": [
+						{
+							"key": "requestId",
+							"value": ""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Webhook",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"requestId\": \"unique-request-id\",\n\t\"status\": \"completed\",\n\t\"processedImages\": [\n\t\t\"https://example.com/image1.jpg\",\n\t\t\"https://example.com/image2.jpg\"\n\t]\n}"
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/webhook",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"webhook"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
